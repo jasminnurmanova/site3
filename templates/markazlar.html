@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%for markaz in markazlar%}
+<a href ="{%url 'details' markaz.pk%}" > {{markaz.name}} <br>
+{%endfor%}
+</body>
+</html>

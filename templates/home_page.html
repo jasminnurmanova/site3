@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+{% for category in categories %}
+    <a href="{% url 'markazlar' category.pk %}">{{ category.type }}</a><br>
+{% endfor %}
+
+</body>
+</html>
