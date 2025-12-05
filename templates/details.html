@@ -1,14 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>detail</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Center Details</title> <!-- фиксированный заголовок -->
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Inter", sans-serif; }
+    body { background: linear-gradient(135deg, #f5f7fa, #e0f2fe); color:#1e293b; padding-bottom:50px; }
+
+    header {
+        width:100%;
+        padding:25px 40px;
+        background: linear-gradient(90deg,#6ee7b7,#3b82f6);
+        color:white;
+        font-size:28px;
+        font-weight:700;
+        text-align:center;
+        border-radius:0 0 16px 16px;
+        margin-bottom:30px;
+    }
+
+    .container {
+        max-width:900px;
+        margin:0 auto;
+        background:white;
+        border-radius:16px;
+        box-shadow:0 4px 20px rgba(0,0,0,0.1);
+        overflow:hidden;
+    }
+
+    .center-image {
+        width:100%;
+        height:400px;
+        object-fit:cover;
+    }
+
+    .content {
+        padding:30px;
+    }
+
+    .content h1 {
+        font-size:32px;
+        color:#3b82f6;
+        margin-bottom:25px;
+        text-align:center;
+    }
+
+    .detail-block {
+        background: linear-gradient(90deg, #fef3c7, #fef9c3);
+        padding:15px 20px;
+        border-radius:12px;
+        margin-bottom:15px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-size:16px;
+    }
+
+    .detail-label {
+        font-weight:700;
+        color:#2563eb;
+    }
+
+    .detail-value {
+        color:#1e293b;
+        text-align:right;
+    }
+
+    .buttons {
+        display:flex;
+        justify-content:space-between;
+        margin-top:25px;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+
+    .buttons a {
+        flex:1;
+        text-align:center;
+        padding:12px 20px;
+        text-decoration:none;
+        border-radius:12px;
+        font-weight:600;
+        color:white;
+        transition:background 0.3s;
+    }
+
+    .back-btn { background:#3b82f6; }
+    .back-btn:hover { background:#2563eb; }
+
+    .subscribe-btn { background:#f97316; }
+    .subscribe-btn:hover { background:#ea580c; }
+
+    footer {
+        text-align:center;
+        padding:30px;
+        margin-top:40px;
+        background: linear-gradient(90deg,#3b82f6,#a855f7);
+        color:white;
+        font-size:14px;
+        border-radius:16px 16px 0 0;
+    }
+
+</style>
 </head>
 <body>
-{{markazlar.name}} <br>
-{{markazlar.location}}<br>
-{{markazlar.desc}}<br>
-{{markazlar.created_at}}<br>
-<img src = "{{ markazlar_images.url }}">
+
+<header>Center Details</header>
+
+<div class="container">
+    <img src="{{ markazlar.image.url }}" alt="{{ markazlar.name }}" class="center-image">
+
+    <div class="content">
+        <h1>{{ markazlar.name }}</h1>
+
+        <div class="detail-block">
+            <span class="detail-label">Location:</span>
+            <span class="detail-value">{{ markazlar.location }}</span>
+        </div>
+
+        <div class="detail-block">
+            <span class="detail-label">Description:</span>
+            <span class="detail-value">{{ markazlar.desc }}</span>
+        </div>
+
+        <div class="detail-block">
+            <span class="detail-label">Created At:</span>
+            <span class="detail-value">{{ markazlar.created_at }}</span>
+        </div>
+
+        <div class="buttons">
+            <!-- Кнопка назад на список центров текущей категории -->
+            <a href="{% url 'markazlar' markazlar.category.pk %}" class="back-btn">Back to Centers</a>
+            <a href="#subscribe" class="subscribe-btn">Subscribe for Study</a>
+        </div>
+    </div>
+</div>
+
+<footer>© 2025 Education Directory — All Rights Reserved</footer>
+
 </body>
 </html>

@@ -1,14 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fdfbfb, #ebedee);
+            color: #1e293b;
+        }
+
+        header {
+            width: 100%;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #6ee7b7, #3b82f6);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            color: white;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+
+        .hero {
+            padding: 100px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #93c5fd, #f0abfc);
+            color: #1e1b4b;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1e1b4b;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #312e81;
+        }
+
+        .subjects-section {
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .subjects-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #334155;
+        }
+
+        .subject-card {
+            background: linear-gradient(135deg, #ffffff, #e0f2fe);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #0f172a;
+            display: block;
+            border: 2px solid transparent;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, #e0f2fe, #d8b4fe);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
+            color: white;
+            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+    </style>
 </head>
 <body>
 
-{% for category in categories %}
-    <a href="{% url 'markazlar' category.pk %}">{{ category.type }}</a><br>
-{% endfor %}
+<header>
+    <div class="logo">Education Directory</div>
+</header>
+
+<section class="hero">
+    <h1>Explore Top Education Centers in Tashkent</h1>
+    <p>Discover the best IT schools, English centers, mathematics academies, and more. Navigate through subjects and find the perfect place to learn and grow.</p>
+</section>
+
+<section class="subjects-section">
+    <h2 class="subjects-title">Subjects</h2>
+
+    <div class="grid">
+        {% for category in categories %}
+        <a href="{% url 'markazlar' category.pk %}" class="subject-card">
+            <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 10px;">{{ category.type }}</h3>
+            <p style="font-size: 15px; color: #475569;">Browse all education centers under this subject and explore detailed information.</p>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<footer>
+    © 2025 Education Directory — All Rights Reserved
+</footer>
 
 </body>
 </html>
