@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+<h1>Edit center</h1>
+<form method ="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <input type="text" name="name" value="{{markaz.name}}" placeholder="Name"> <br><br>
+    <input type="text" name="category" value="{{markaz.category}}" placeholder="category"> <br><br>
+    <input type="text" name="desc" value="{{markaz.name}}" placeholder="Description"> <br><br>
+    <input type="date" name="created_at" value="{{markaz.name}}" placeholder="Created at"> <br><br>
+    <input type="text" name="location" value="{{markaz.name}}" placeholder="Location"> <br><br>
+    <img src="{{ markaz.image.url }}" >
+    <input type="file" name="image"  ><br><br>
+  <button type ="submit"> Create </button>
+
+
+
+</form>
+
+</body>
+</html>

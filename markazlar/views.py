@@ -19,15 +19,16 @@ def detail_markazlar(request,pk):
     return render(request,'details.html',{'markazlar':markazlar})
 
 def create_markaz(request):
-    if request.method == ' POST':
+    if request.method == 'POST':
         name=request.POST.get('name','')
-        category=Category.objects.filter (name= request.POST.get('category','')).first(),
+        category=Category.objects.filter (type= request.POST.get('category','')).first()
         created_at=request.POST.get('created_at','')
-        location=request.POST.get('name','')
+        location=request.POST.get('location','')
+        print(location)
         desc=request.POST.get('desc','')
         image=request.FILES.get('image')
 
-        markaz=Markazlar(
+        markaz = Markazlar.objects.create(
             name=name,
             category=category,
             created_at=created_at,
@@ -35,6 +36,25 @@ def create_markaz(request):
             desc=desc,
             image=image
         )
+        markaz.save()
         return redirect('details', markaz.pk)
 
     return render(request,'create_markaz.html')
+
+
+
+def update_markaz(request,pk):
+    markaz=Markazlar.objects.filter(pk=pk).first()
+    if request.method == 'POST':
+        markaz.name=request.POST.get('name','')
+        markaz.category=Category.objects.filter (type= request.POST.get('category','')).first()
+        markaz.created_at=request.POST.get('created_at','')
+        markaz.location=request.POST.get('location','')
+        markaz.desc=request.POST.get('desc','')
+        markaz.image=request.FILES.get('image')
+
+
+        markaz.save()
+        return redirect('details', markaz.pk)
+
+    return render(request,'update_markaz.html',{'markaz':markaz})
