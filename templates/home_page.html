@@ -123,7 +123,9 @@
 
 <section class="subjects-section">
     <h2 class="subjects-title">Subjects</h2>
-
+<button>
+    <a href="{% url 'create' %}" > Create center </a>
+</button>
     <div class="grid">
         {% for category in categories %}
         <a href="{% url 'markazlar' category.pk %}" class="subject-card">
